@@ -11,6 +11,7 @@
 #endif
 
 #include "TileMap.h"
+#include "FPS.h"
 
 using std::cerr;
 using std::endl;
@@ -45,6 +46,7 @@ int main()
   if (! init(window, renderer, keyStates) )
     return -1;
 
+  FPS fps;
   TileMap tileMap(renderer, TILES_IN_ROW, TILES_IN_COL, TILE_SIZE);
 
   int x = TILES_IN_ROW * TILE_SIZE / 2;
@@ -102,6 +104,11 @@ int main()
       }
  
     }
+
+
+    if (fps.getCount() == 1)
+      std::cout << "fps: " << fps.getValue() << endl;
+    fps.update();
 
     if (left)  --x;
     if (right) ++x;

@@ -1,6 +1,6 @@
 APP_NAME    := game
 CC          := g++
-SOURCES     := main.cpp TileMap.cpp
+SOURCES     := main.cpp TileMap.cpp FPS.cpp
 COMP_FLAGS  := -Wall -Werror -Wextra -O3
 SDL_MODULES := -lSDL2_image -lSDL2_ttf
 

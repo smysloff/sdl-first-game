@@ -26,8 +26,8 @@ const int   WINDOW_WIDTH    = 640; // TILES_IN_ROW * TILE_SIZE; // 1024
 const int   WINDOW_HEIGHT   = 320; // TILES_IN_COL * TILE_SIZE; // 640
 const int   WINDOW_FLAGS    = SDL_WINDOW_SHOWN;
 
-const int   WINDOW_CENTER_X = WINDOW_WIDTH / 2;  // 562
-const int   WINDOW_CENTER_Y = WINDOW_HEIGHT / 2; // 320
+//const int   WINDOW_CENTER_X = WINDOW_WIDTH / 2;  // 562
+//const int   WINDOW_CENTER_Y = WINDOW_HEIGHT / 2; // 320
 
 bool init(
   SDL_Window*& window, SDL_Renderer*& renderer, const Uint8*& keyStates);

@@ -1,6 +1,10 @@
 #pragma once
 
-#include <SDL2/SDL.h>
+#ifdef __APPLE__
+  #include <SDL.h>
+#else
+  #include <SDL2/SDL.h>
+#endif
 
 class TileMap
 {
@@ -14,12 +18,6 @@ public:
 
   TileMap(SDL_Renderer* renderer,
     int tilesInRow, int tilesInCol, int tileSize);
-/*    : tilesInRow(tilesInRow), tilesInCol(tilesInCol), tileSize(tileSize)
-  {
-    width = tilesInRow * tileSize;
-    height = tilesInCol * tileSize;
-    CreateTexture(renderer);
-  }*/
 
   ~TileMap();
 

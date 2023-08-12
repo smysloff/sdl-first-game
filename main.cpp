@@ -1,7 +1,14 @@
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
+
+#ifdef __APPLE__
+  #include <SDL.h>
+  #include <SDL_image.h>
+  #include <SDL_ttf.h>
+#else
+  #include <SDL2/SDL.h>
+  #include <SDL2/SDL_image.h>
+  #include <SDL2/SDL_ttf.h>
+#endif
 
 #include "TileMap.h"
 
@@ -117,9 +124,6 @@ int main()
     SDL_RenderClear(renderer);
 
     tileMap.render(renderer, x, y, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-    //SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE);
-    //SDL_RenderDrawPoint(renderer, WINDOW_CENTER_X, WINDOW_CENTER_Y);
 
     SDL_RenderPresent(renderer);
   }

@@ -1,4 +1,5 @@
 #pragma once
+#include <sstream>
 #include "SDL_include.h"
 
 class FPS
@@ -6,15 +7,15 @@ class FPS
 public:
   FPS();
   void update();
-  void render();
+  void render(SDL_Renderer* renderer, TTF_Font* font);
   int getValue();
   int getCount();
   Uint64 getTime();
   Uint64 getLasttime();
 
 private:
-  int value = 0;
-  int count = 0;
-  Uint64 time;
-  Uint64 lasttime;
+  int Value = 0;
+  int Count = 0;
+  Uint64 Time;
+  Uint64 Lasttime;
 };

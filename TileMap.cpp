@@ -57,7 +57,8 @@ void TileMap::CreateTexture(SDL_Renderer* renderer)
 
   SDL_DestroyTexture(grass);
 
-  /*
+  /* tile borders
+   *
   SDL_SetRenderDrawColor(renderer, 0x22, 0x22, 0x22, SDL_ALPHA_OPAQUE);
 
   for (int row = 0; row < TilesInCol; ++row)
@@ -70,7 +71,8 @@ void TileMap::CreateTexture(SDL_Renderer* renderer)
   {
     int x = col * TileSize;
     SDL_RenderDrawLine(renderer, x, 0, x, Height);
-  }*/
+  }
+  */
 
   SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE);
   SDL_RenderDrawLine(renderer, 0, 0, Width, 0);

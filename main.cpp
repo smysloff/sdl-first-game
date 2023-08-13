@@ -1,3 +1,4 @@
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 
 #include "SDL_include.h"
@@ -15,7 +16,7 @@ const char* WINDOW_TITLE    = "SDL2 Simple Game";
 const int   WINDOW_POS_X    = SDL_WINDOWPOS_CENTERED;
 const int   WINDOW_POS_Y    = SDL_WINDOWPOS_CENTERED;
 const int   WINDOW_WIDTH    = 1280;
-const int   WINDOW_HEIGHT   = 720;
+const int   WINDOW_HEIGHT   = 768;
 const int   WINDOW_FLAGS    = SDL_WINDOW_SHOWN;
 
 //const int   WINDOW_CENTER_X = WINDOW_WIDTH / 2;  // 562
@@ -34,8 +35,12 @@ int main()
   SDL_Renderer* renderer = nullptr;
   const Uint8* keyStates = nullptr;
 
+  TTF_Font* font = nullptr;
+
   if (! init(window, renderer, keyStates) )
     return -1;
+
+  font = TTF_OpenFont("fonts/8bitOperatorPlus8-Regular.ttf", 24);
 
   FPS fps;
   TileMap tileMap(renderer, TILES_IN_ROW, TILES_IN_COL, TILE_SIZE);
@@ -96,9 +101,6 @@ int main()
  
     }
 
-
-    if (fps.getCount() == 1)
-      std::cout << "fps: " << fps.getValue() << endl;
     fps.update();
 
     if (left)  --x;
@@ -122,10 +124,12 @@ int main()
     SDL_RenderClear(renderer);
 
     tileMap.render(renderer, x, y, WINDOW_WIDTH, WINDOW_HEIGHT);
+    fps.render(renderer, font);
 
     SDL_RenderPresent(renderer);
   }
 
+  TTF_CloseFont(font);
   cleanup(window, renderer);
 }
 

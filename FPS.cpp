@@ -2,44 +2,60 @@
 
 FPS::FPS()
 {
-  lasttime = time = SDL_GetTicks64();
+  Lasttime = Time = SDL_GetTicks64();
 }
 
 void FPS::update()
 {
-  time = SDL_GetTicks64();
+  Time = SDL_GetTicks64();
 
-  if (time - lasttime < 1000)
-    ++count;
+  if (Time - Lasttime < 1000)
+    ++Count;
   else
   {
-    value = count;
-    count = 0;
-    lasttime = time;
+    Value = Count;
+    Count = 0;
+    Lasttime = Time;
   }
 }
 
 int FPS::getValue()
 {
-  return value;
+  return Value;
 }
 
 int FPS::getCount()
 {
-  return count;
+  return Count;
 }
 
 Uint64 FPS::getTime()
 {
-  return time;
+  return Time;
 }
 
 Uint64 FPS::getLasttime()
 {
-  return lasttime;
+  return Lasttime;
 }
 
-void FPS::render()
+void FPS::render(SDL_Renderer* renderer, TTF_Font* font)
 {
+  std::stringstream text;
 
+  text.str("");
+  text << Value;
+
+  SDL_Surface* surface = TTF_RenderText_Solid(
+    font, text.str().c_str(), { 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE });
+  SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+  int width, height;
+  TTF_SizeText(font, text.str().c_str(), &width, &height);
+
+  SDL_Rect dstRect = { .x = 5, .y = 7, .w = width, .h = height };
+  SDL_RenderCopy(renderer, texture, nullptr, &dstRect);
+
+  SDL_FreeSurface(surface);
+  SDL_DestroyTexture(texture);
 }

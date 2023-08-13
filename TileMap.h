@@ -1,29 +1,33 @@
 #pragma once
-
-#ifdef __APPLE__
-  #include <SDL.h>
-#else
-  #include <SDL2/SDL.h>
-#endif
+#include "SDL_include.h"
 
 class TileMap
 {
 public:
-  int tilesInRow;
-  int tilesInCol;
-  int tileSize;
-  int width;
-  int height;
   SDL_Texture* texture;
 
   TileMap(SDL_Renderer* renderer,
-    int tilesInRow, int tilesInCol, int tileSize);
+    int TilesInRow, int TilesInCol, int TileSize);
 
   ~TileMap();
 
   void render(SDL_Renderer* renderer,
     int x, int y, int winWidth, int winHeight);
 
+  int getWidth();
+  int getHeight();
+  int getTilesInRow();
+  int getTilesInCol();
+  int getTileSize();
+
 private:
+  int Width;
+  int Height;
+  int TilesInRow;
+  int TilesInCol;
+  int TileSize;
+  int *Map;
+
   void CreateTexture(SDL_Renderer* renderer);
+  void Generate(SDL_Renderer* renderer);
 };

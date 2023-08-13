@@ -1,15 +1,6 @@
 #include <iostream>
 
-#ifdef __APPLE__
-  #include <SDL.h>
-  #include <SDL_image.h>
-  #include <SDL_ttf.h>
-#else
-  #include <SDL2/SDL.h>
-  #include <SDL2/SDL_image.h>
-  #include <SDL2/SDL_ttf.h>
-#endif
-
+#include "SDL_include.h"
 #include "TileMap.h"
 #include "FPS.h"
 
@@ -17,14 +8,14 @@ using std::cerr;
 using std::endl;
 
 const int   TILE_SIZE       = 32;
-const int   TILES_IN_ROW    = 32;
-const int   TILES_IN_COL    = 20;
+const int   TILES_IN_ROW    = 64;
+const int   TILES_IN_COL    = 40;
 
 const char* WINDOW_TITLE    = "SDL2 Simple Game";
 const int   WINDOW_POS_X    = SDL_WINDOWPOS_CENTERED;
 const int   WINDOW_POS_Y    = SDL_WINDOWPOS_CENTERED;
-const int   WINDOW_WIDTH    = 640; // TILES_IN_ROW * TILE_SIZE; // 1024
-const int   WINDOW_HEIGHT   = 320; // TILES_IN_COL * TILE_SIZE; // 640
+const int   WINDOW_WIDTH    = 1280;
+const int   WINDOW_HEIGHT   = 720;
 const int   WINDOW_FLAGS    = SDL_WINDOW_SHOWN;
 
 //const int   WINDOW_CENTER_X = WINDOW_WIDTH / 2;  // 562
@@ -118,14 +109,14 @@ int main()
     if (x < WINDOW_WIDTH / 2)
       x = WINDOW_WIDTH / 2;
     
-    if (x > tileMap.width - WINDOW_WIDTH / 2)
-      x = tileMap.width - WINDOW_WIDTH / 2;
+    if (x > tileMap.getWidth() - WINDOW_WIDTH / 2)
+      x = tileMap.getWidth() - WINDOW_WIDTH / 2;
 
     if (y < WINDOW_HEIGHT / 2)
       y = WINDOW_HEIGHT / 2;
     
-    if (y > tileMap.height - WINDOW_HEIGHT / 2)
-      y = tileMap.height - WINDOW_HEIGHT / 2;
+    if (y > tileMap.getHeight() - WINDOW_HEIGHT / 2)
+      y = tileMap.getHeight() - WINDOW_HEIGHT / 2;
 
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(renderer);

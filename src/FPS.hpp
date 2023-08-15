@@ -1,6 +1,6 @@
 #pragma once
 #include <sstream>
-#include "SDL_include.h"
+#include "SDL_include.hpp"
 
 class FPS
 {

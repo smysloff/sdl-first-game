@@ -1,8 +1,15 @@
 APP_NAME    := game
 CC          := g++
-SOURCES     := main.cpp FPS.cpp TileMap.cpp Point.cpp Entity.cpp
 COMP_FLAGS  := -Wall -Werror -Wextra -O3
 SDL_MODULES := -lSDL2_image -lSDL2_ttf
+SOURCES     := src/main.cpp \
+							 src/config.cpp \
+							 src/Controls.cpp \
+							 src/Entity.cpp \
+							 src/FPS.cpp \
+							 src/Point.cpp \
+							 src/TileMap.cpp \
+							 src/utils.cpp
 
 ifeq ($(shell uname), Darwin)
 	SDL_FLAGS := `sdl2-config --libs` $(SDL_MODULES) `sdl2-config --cflags`

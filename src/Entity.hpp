@@ -5,7 +5,7 @@
 #include <string>
 #include <cmath>
 
-#include "Point.h"
+#include "Point.hpp"
 
 class Entity
 {

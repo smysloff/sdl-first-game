@@ -1,5 +1,4 @@
-#include "TileMap.h"
-#include <SDL2/SDL_render.h>
+#include "TileMap.hpp"
 
 TileMap::TileMap(SDL_Renderer* renderer,
   int TilesInRow, int TilesInCol, int TileSize)

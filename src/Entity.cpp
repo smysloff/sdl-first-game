@@ -1,4 +1,4 @@
-#include "Entity.h"
+#include "Entity.hpp"
 
 Entity::Entity(double x, double y, double speed = 0)
     : position(x, y), waypoint(x, y), speed(speed)

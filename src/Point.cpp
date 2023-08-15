@@ -1,4 +1,4 @@
-#include "Point.h"
+#include "Point.hpp"
 
 void Point::set(double x, double y)
 {

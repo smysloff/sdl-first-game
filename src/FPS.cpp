@@ -1,4 +1,4 @@
-#include "FPS.h"
+#include "FPS.hpp"
 
 FPS::FPS()
 {

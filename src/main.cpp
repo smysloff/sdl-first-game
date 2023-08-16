@@ -9,6 +9,8 @@
 #include "TileMap.hpp"
 #include "utils.hpp"
 
+enum class TextureDirection { Left, Down, Up, Right };
+
 int main()
 {
   SDL_Event event;
@@ -36,20 +38,28 @@ int main()
   SDL_Texture* character_texture = IMG_LoadTexture(renderer, "img/char_king.png");
   SDL_Rect character_sprites[] = {
     {
-      .x = character_width * 1, .y = 0,
-      .w = character_width,     .h = character_height
-    },
-    { 
-      .x = character_width * 2, .y = 0,
-      .w = character_width,     .h = character_height
+      .x = character_width * static_cast<int>(TextureDirection::Left),
+      .y = 0,
+      .w = character_width,
+      .h = character_height
     },
     {
-      .x = character_width * 0, .y = 0,
-      .w = character_width,     .h = character_height
+      .x = character_width * static_cast<int>(TextureDirection::Down),
+      .y = 0,
+      .w = character_width,
+      .h = character_height
     },
     { 
-      .x = character_width * 3, .y = 0, 
-      .w = character_width,     .h = character_height
+      .x = character_width * static_cast<int>(TextureDirection::Up),
+      .y = 0,
+      .w = character_width,
+      .h = character_height
+    },
+    { 
+      .x = character_width * static_cast<int>(TextureDirection::Right),
+      .y = 0,
+      .w = character_width,
+      .h = character_height
     }
   };
   double character_lasttime = fps.getTime();
@@ -111,21 +121,22 @@ int main()
 
     tileMap.render(renderer, camera_x, camera_y, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    int number = 0;
+    TextureDirection textureDirection;
+
     if (!character.isMoving())
-      number = 0;
+      textureDirection = TextureDirection::Down;
 
     else if (character.angle > 1 && character.angle < (M_PI - 1))
-      number = 0;
+      textureDirection = TextureDirection::Down;
     
     else if (character.angle < -1 && character.angle > (-M_PI + 1))
-      number = 1;
+      textureDirection = TextureDirection::Up;
   
     else if (character.angle >= (M_PI - 1) || character.angle <= (-M_PI + 1))
-      number = 2;
+      textureDirection = TextureDirection::Left;
 
-    else if (character.angle >= -1 && character.angle <= 1)
-      number = 3;
+    else // if (character.angle >= -1 && character.angle <= 1)
+      textureDirection = TextureDirection::Right;
   
     if (character.isMoving())
     {
@@ -135,17 +146,17 @@ int main()
         character.waypoint.x, character.waypoint.y);
 
       SDL_Rect dstRect = {
-        .x = (int) character.waypoint.x - 3,
-        .y = (int) character.waypoint.y - 3,
+        .x = static_cast<int>(character.waypoint.x) - 3,
+        .y = static_cast<int>(character.waypoint.y) - 3,
         .w = 7, .h = 7
       };
       SDL_RenderFillRect(renderer, &dstRect);
     }
 
-    SDL_Rect* srcRect = &character_sprites[number];
+    SDL_Rect* srcRect = &character_sprites[static_cast<int>(textureDirection)];
     SDL_Rect  dstRect = {
-      .x = (int) character.position.x - HALF_TILE_SIZE,
-      .y = (int) character.position.y - TILE_SIZE,
+      .x = static_cast<int>(character.position.x) - HALF_TILE_SIZE,
+      .y = static_cast<int>(character.position.y) - TILE_SIZE,
       .w = TILE_SIZE,
       .h = DOUBLE_TILE_SIZE
     };

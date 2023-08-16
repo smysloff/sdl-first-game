@@ -33,7 +33,7 @@ int main()
   Entity character(HALF_WINDOW_WIDTH, HALF_WINDOW_HEIGHT + HALF_TILE_SIZE, 90);
   int character_width = TILE_SIZE * 2;
   int character_height = TILE_SIZE * 4;
-  SDL_Texture* character_texture = IMG_LoadTexture(renderer, "img/char.png");
+  SDL_Texture* character_texture = IMG_LoadTexture(renderer, "img/char_king.png");
   SDL_Rect character_sprites[] = {
     {
       .x = character_width * 1, .y = 0,
